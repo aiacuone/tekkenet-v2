@@ -2,16 +2,17 @@ import { Button, Flex, Heading, Stack } from "@chakra-ui/react";
 import { AiOutlineRollback } from "react-icons/ai";
 import { GrAdd } from "react-icons/gr";
 import Link from "next/link";
-import { mixUps } from "../mixUps";
-import { CharacterCard } from "./CharacterCard";
+import { MixUpCard } from "./MixUpCard";
 
-export function CharacterTemplate({ character, list }) {
+export function CharacterTemplate({ character, moves, mixUps }) {
   const navIconSize = 20;
+
   const heading = (
     <Flex w={"100%"} justifyContent={"center"}>
       <Heading textTransform={"capitalize"}>{character}</Heading>
     </Flex>
   );
+
   const navHeader = (
     <Flex>
       <Flex flex={1}>
@@ -29,19 +30,38 @@ export function CharacterTemplate({ character, list }) {
     </Flex>
   );
 
-  const categoriesArr = ["neutral", "wake up", "throw", "unblockable"];
-
   const categories = (
     <Stack mt={"10"} spacing={10}>
-      {categoriesArr.map((c) => {
-        return (
-          <Flex bg={"gray.100"} pb={10}>
-            <Heading size={"sm"} textTransform={"capitalize"} m={3}>
-              {c}
-            </Heading>
-          </Flex>
-        );
-      })}
+      {mixUps &&
+        Object.keys(mixUps).map((category) => {
+          return (
+            <Flex
+              bg={"gray.300"}
+              p={10}
+              justifyContent={"center"}
+              alignItems={"center"}
+              position={"relative"}
+            >
+              <Heading
+                size={"sm"}
+                textTransform={"capitalize"}
+                m={3}
+                position={"absolute"}
+                top={0}
+                left={0}
+              >
+                {category}
+              </Heading>
+              <Stack spacing={5}>
+                {mixUps[category].map((subCategories) => {
+                  return (
+                    <MixUpCard subCategories={subCategories} fontSize={12} />
+                  );
+                })}
+              </Stack>
+            </Flex>
+          );
+        })}
     </Stack>
   );
 

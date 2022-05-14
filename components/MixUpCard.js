@@ -1,13 +1,28 @@
-import mixUps from "../mixUps";
-import { Flex } from "@chakra-ui/react";
+import { Flex, Text } from "@chakra-ui/react";
 
-const mixUpCard = ({ options, summary, notes }) => {
-  const { options, summary, notes } = mixUp;
+export const MixUpCard = ({ subCategories, id, ...rest }) => {
   return (
-    <Flex direction={"column"}>
-      <Text>{options}</Text>
-      <Text>{summary}</Text>
-      <Text>{notes}</Text>
+    <Flex
+      cursor={"pointer"}
+      direction={"column"}
+      bg={"white"}
+      p={5}
+      borderRadius={15}
+      boxShadow={"2px 2px 2px #707070 "}
+      _hover={{ bg: "gray.100" }}
+      maxW={"400px"}
+      {...rest}
+    >
+      {Object.keys(subCategories).map((subCategory) => {
+        return (
+          <Flex>
+            <Text mr={3} fontWeight={"bold"} textTransform={"capitalize"}>
+              {`${subCategory}:`}
+            </Text>
+            <Text>{subCategories[subCategory]}</Text>
+          </Flex>
+        );
+      })}
     </Flex>
   );
 };

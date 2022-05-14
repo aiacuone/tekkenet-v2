@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export const CharacterCard = ({ character }) => {
   return (
-    <Link href={`/characters/${character}`}>
+    <Link href={`/character/${character}`}>
       <Button w={150}>
         <Text textTransform={"capitalize"}>{character}</Text>
       </Button>

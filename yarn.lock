@@ -827,7 +827,7 @@
   "resolved" "https://registry.npmjs.org/@emotion/memoize/-/memoize-0.7.4.tgz"
   "version" "0.7.4"
 
-"@emotion/react@^11.0.0", "@emotion/react@^11.0.0-rc.0", "@emotion/react@^11.9.0", "@emotion/react@>=10.0.35":
+"@emotion/react@^11.0.0", "@emotion/react@^11.0.0-rc.0", "@emotion/react@>=10.0.35":
   "integrity" "sha512-lBVSF5d0ceKtfKCDQJveNAtkC7ayxpVlgOohLgXqRwqWr9bOf4TZAFFyIcNngnV6xK6X4x2ZeXq7vliHkoVkxQ=="
   "resolved" "https://registry.npmjs.org/@emotion/react/-/react-11.9.0.tgz"
   "version" "11.9.0"
@@ -856,7 +856,7 @@
   "resolved" "https://registry.npmjs.org/@emotion/sheet/-/sheet-1.1.0.tgz"
   "version" "1.1.0"
 
-"@emotion/styled@^11.0.0", "@emotion/styled@^11.8.1":
+"@emotion/styled@^11.0.0":
   "integrity" "sha512-OghEVAYBZMpEquHZwuelXcRjRJQOVayvbmNR0zr174NHdmMgrNkLC6TljKC5h9lZLkN5WGrdUcrKlOJ4phhoTQ=="
   "resolved" "https://registry.npmjs.org/@emotion/styled/-/styled-11.8.1.tgz"
   "version" "11.8.1"
@@ -1011,6 +1011,25 @@
   "integrity" "sha512-//oorEZjL6sbPcKUaCdIGlIUeH26mgzimjBB77G6XRgnDl/L5wOnpyBGRe/Mmf5CVW3PwEBE1NjiMZ/ssFh4wA=="
   "resolved" "https://registry.npmjs.org/@types/parse-json/-/parse-json-4.0.0.tgz"
   "version" "4.0.0"
+
+"@types/prop-types@*":
+  "integrity" "sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w=="
+  "resolved" "https://registry.npmjs.org/@types/prop-types/-/prop-types-15.7.5.tgz"
+  "version" "15.7.5"
+
+"@types/react@^16.8.0 || ^17.0.0 || ^18.0.0", "@types/react@^16.9.0 || ^17.0.0 || ^18.0.0":
+  "integrity" "sha512-9bjbg1hJHUm4De19L1cHiW0Jvx3geel6Qczhjd0qY5VKVE2X5+x77YxAepuCwVh4vrgZJdgEJw48zrhRIeF4Nw=="
+  "resolved" "https://registry.npmjs.org/@types/react/-/react-18.0.9.tgz"
+  "version" "18.0.9"
+  dependencies:
+    "@types/prop-types" "*"
+    "@types/scheduler" "*"
+    "csstype" "^3.0.2"
+
+"@types/scheduler@*":
+  "integrity" "sha512-hppQEBDmlwhFAXKJX2KnWLYu5yMfi91yazPb2l+lbJiwW+wdo1gNeRA+3RgNSO39WYX2euey41KEwnqesU2Jew=="
+  "resolved" "https://registry.npmjs.org/@types/scheduler/-/scheduler-0.16.2.tgz"
+  "version" "0.16.2"
 
 "@typescript-eslint/parser@^5.21.0":
   "integrity" "sha512-V06cYUkqcGqpFjb8ttVgzNF53tgbB/KoQT/iB++DOIExKmzI9vBJKjZKt/6FuV9c+zrDsvJKbJ2DOCYwX91cbw=="
