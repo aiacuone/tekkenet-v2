@@ -53,9 +53,14 @@ export function CharacterTemplate({ character, moves, mixUps }) {
                 {category}
               </Heading>
               <Stack spacing={5}>
-                {mixUps[category].map((subCategories) => {
+                {mixUps[category].map((mixUpData) => {
                   return (
-                    <MixUpCard subCategories={subCategories} fontSize={12} />
+                    <MixUpCard
+                      data={mixUpData}
+                      character={character}
+                      category={category}
+                      fontSize={12}
+                    />
                   );
                 })}
               </Stack>

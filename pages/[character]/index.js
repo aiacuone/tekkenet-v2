@@ -5,10 +5,10 @@ import { mixUps } from "../../mixUps";
 
 const CharacterProvider = () => {
   const route = useRouter();
-  const character = route.query.name;
+  const { character } = route.query;
   const moves = characters[character];
   const characterMixUps = mixUps[character];
-  console.log(characterMixUps, "character mix ups");
+
   const props = {
     character,
     moves,
