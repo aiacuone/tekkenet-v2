@@ -5,6 +5,7 @@ import Link from "next/link";
 import { DualNestedCardTemplate, CardNestingTemplate } from "./templates";
 
 export function CharacterTemplate({ character, data }) {
+  if (!data) return null;
   const navIconSize = 20;
 
   const heading = (
@@ -31,21 +32,20 @@ export function CharacterTemplate({ character, data }) {
   );
 
   const mixUpsNode = (
-    <DualNestedCardTemplate
-      heading={"Mix Ups"}
-      bg0={"purple.100"}
-      data={data}
+    <CardNestingTemplate
+      data={data["Mix Ups"]}
       character={character}
+      metaName={"Mix Ups"}
     />
   );
 
-  // const mixUpsNode = (
-  //   <CardNestingTemplate
-  //     data={data}
-  //     character={character}
-  //     metaName={"Mix Ups"}
-  //   />
-  // );
+  const throwsNode = (
+    <CardNestingTemplate data={data["throws"]} metaName={"Throws"} />
+  );
+
+  const pokesNode = (
+    <CardNestingTemplate data={data["pokes"]} metaName={"Pokes"} />
+  );
 
   return (
     <Flex w={"100%"} h={"100%"} direction={"column"} p={10}>
@@ -53,6 +53,8 @@ export function CharacterTemplate({ character, data }) {
         {heading}
         {controls}
         {mixUpsNode}
+        {throwsNode}
+        {pokesNode}
       </Stack>
     </Flex>
   );
