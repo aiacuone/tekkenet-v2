@@ -62,3 +62,15 @@ export const akuma = {
     },
   ],
 };
+
+// const pokes = {
+//   high: [
+//     { id: 021, command: "1" },
+//     { id: 022, command: "1,2" },
+//     { id: 100, command: "1,2,1" },
+//   ],
+//   mid: [{ id: 101, command: "df1" }],
+//   low: [{ id: 102, command: "d4" }],
+// };
+//
+// const throws = [{ command: "1+3" }, { command: "2+4" }, { command: "1+2" }];

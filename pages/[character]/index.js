@@ -7,12 +7,12 @@ const CharacterProvider = () => {
   const route = useRouter();
   const { character } = route.query;
   const moves = characters[character];
-  const characterMixUps = mixUps[character];
+  const data = mixUps[character];
 
   const props = {
     character,
     moves,
-    mixUps: characterMixUps,
+    data,
   };
 
   return <CharacterTemplate {...props} />;

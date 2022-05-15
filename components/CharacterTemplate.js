@@ -2,9 +2,9 @@ import { Box, Button, Flex, Heading, Stack, Text } from "@chakra-ui/react";
 import { AiOutlineRollback } from "react-icons/ai";
 import { GrAdd } from "react-icons/gr";
 import Link from "next/link";
-import { DualNestedCardTemplate } from "./templates";
+import { DualNestedCardTemplate, CardNestingTemplate } from "./templates";
 
-export function CharacterTemplate({ character, moves, mixUps }) {
+export function CharacterTemplate({ character, data }) {
   const navIconSize = 20;
 
   const heading = (
@@ -13,7 +13,7 @@ export function CharacterTemplate({ character, moves, mixUps }) {
     </Flex>
   );
 
-  const navHeader = (
+  const controls = (
     <Flex>
       <Flex flex={1}>
         <Link href={"/"}>
@@ -34,16 +34,24 @@ export function CharacterTemplate({ character, moves, mixUps }) {
     <DualNestedCardTemplate
       heading={"Mix Ups"}
       bg0={"purple.100"}
-      data={mixUps}
+      data={data}
       character={character}
     />
   );
+
+  // const mixUpsNode = (
+  //   <CardNestingTemplate
+  //     data={data}
+  //     character={character}
+  //     metaName={"Mix Ups"}
+  //   />
+  // );
 
   return (
     <Flex w={"100%"} h={"100%"} direction={"column"} p={10}>
       <Stack spacing={10}>
         {heading}
-        {navHeader}
+        {controls}
         {mixUpsNode}
       </Stack>
     </Flex>
