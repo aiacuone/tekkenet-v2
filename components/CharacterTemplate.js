@@ -31,30 +31,16 @@ export function CharacterTemplate({ character, data }) {
     </Flex>
   );
 
-  const mixUpsNode = (
-    <CardNestingTemplate
-      data={data["Mix Ups"]}
-      character={character}
-      metaName={"Mix Ups"}
-    />
-  );
-
-  const throwsNode = (
-    <CardNestingTemplate data={data["throws"]} metaName={"Throws"} />
-  );
-
-  const pokesNode = (
-    <CardNestingTemplate data={data["pokes"]} metaName={"Pokes"} />
-  );
+  const cardNestGroups = Object.keys(data).map((group) => {
+    return <CardNestingTemplate data={data[group]} metaName={group} />;
+  });
 
   return (
     <Flex w={"100%"} h={"100%"} direction={"column"} p={10}>
       <Stack spacing={10}>
         {heading}
         {controls}
-        {mixUpsNode}
-        {throwsNode}
-        {pokesNode}
+        {cardNestGroups}
       </Stack>
     </Flex>
   );

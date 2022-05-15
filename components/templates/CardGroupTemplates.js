@@ -1,6 +1,6 @@
 import { Box, Flex, Heading, Stack as StackRaw } from "@chakra-ui/react";
 import { MixUpCard, GenericCard } from "../index";
-import { randomGroupColor } from "../../utils";
+import { groupColors, randomGroupColor } from "../../utils";
 
 const Stack = ({ children, ...rest }) => {
   return (
@@ -27,7 +27,7 @@ export const CardNestingTemplate = ({ metaName, data, character }) => {
     return (
       <Flex
         w={"100%"}
-        bg={randomGroupColor}
+        bg={groupColors[Math.floor(Math.random() * groupColors.length)]}
         p={10}
         justifyContent={"center"}
         alignItems={"center"}
@@ -95,11 +95,13 @@ export const CardNestingTemplate = ({ metaName, data, character }) => {
 
   return (
     <NestTemplate heading={metaName}>
-      {isObject(data) ? (
-        <CreateGroups heading={metaName} data={data} href={defaultHref} />
-      ) : isArray(data) ? (
-        <CreateCards data={data} href={defaultHref} />
-      ) : null}
+      <Stack w={"100%"}>
+        {isObject(data) ? (
+          <CreateGroups heading={metaName} data={data} href={defaultHref} />
+        ) : isArray(data) ? (
+          <CreateCards data={data} href={defaultHref} />
+        ) : null}
+      </Stack>
     </NestTemplate>
   );
 };

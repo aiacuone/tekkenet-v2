@@ -4,6 +4,8 @@ export const groupColors = [
   "green.200",
   "red.200",
   "teal.200",
+  "yellow.200",
+  "gray.200",
 ];
 
 export function getRandomInt(max) {
