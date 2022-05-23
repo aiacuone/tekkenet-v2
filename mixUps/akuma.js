@@ -72,5 +72,9 @@ export const akuma = {
     mid: [{ id: "101", command: "df1" }],
     low: [{ id: "102", command: "d4" }],
   },
-  throws: [{ command: "1+3" }, { command: "2+4" }, { command: "1+2" }],
+  throws: [
+    { id: "111", command: "1+3" },
+    { id: "112", command: "2+4" },
+    { id: "121", command: "1+2" },
+  ],
 };

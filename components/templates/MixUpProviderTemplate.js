@@ -1,8 +1,7 @@
-import { MixUpTemplate } from "../../../../components/pages/DetailsPageTemplate";
 import { useRouter } from "next/router";
-import { mixUps } from "../../../../mixUps";
+import { mixUps } from "../../mixUps";
 
-const MixUpProvider = () => {
+const CardDetailProvider = () => {
   const router = useRouter();
   const { category, character, id } = router.query;
 
@@ -20,4 +19,4 @@ const MixUpProvider = () => {
   return <MixUpTemplate {...props} />;
 };
 
-export default MixUpProvider;
+export default CardDetailProvider;

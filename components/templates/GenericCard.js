@@ -10,9 +10,8 @@ export const GenericCard = ({
   bg = "white",
   ...rest
 }) => {
-  const { id } = data;
   return (
-    <Link href={href}>
+    <Link href={href} {...rest}>
       <Flex
         cursor={"pointer"}
         direction={"column"}
@@ -22,11 +21,10 @@ export const GenericCard = ({
         boxShadow={"2px 2px 2px #707070 "}
         _hover={{ bg: "gray.100" }}
         w={cardWidth}
-        {...rest}
       >
-        {Object.keys(data).map((v) => {
+        {Object.keys(data).map((v, i) => {
           return (
-            <Flex>
+            <Flex key={`GenericCardData/${v}/${i}`}>
               <Text mr={3} fontWeight={"bold"} textTransform={"capitalize"}>
                 {`${v}:`}
               </Text>

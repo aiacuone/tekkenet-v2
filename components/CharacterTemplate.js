@@ -1,8 +1,8 @@
-import { Box, Button, Flex, Heading, Stack, Text } from "@chakra-ui/react";
+import { Button, Flex, Heading, Stack } from "@chakra-ui/react";
 import { AiOutlineRollback } from "react-icons/ai";
 import { GrAdd } from "react-icons/gr";
 import Link from "next/link";
-import { DualNestedCardTemplate, CardNestingTemplate } from "./templates";
+import { CardNestingTemplate } from "./templates";
 
 export function CharacterTemplate({ character, data }) {
   if (!data) return null;
@@ -31,8 +31,15 @@ export function CharacterTemplate({ character, data }) {
     </Flex>
   );
 
-  const cardNestGroups = Object.keys(data).map((group) => {
-    return <CardNestingTemplate data={data[group]} metaName={group} />;
+  const cardNestGroups = Object.keys(data).map((group, i) => {
+    return (
+      <CardNestingTemplate
+        data={data[group]}
+        metaName={group}
+        character={character}
+        key={`cardNestGroups/${group}/${i}`}
+      />
+    );
   });
 
   return (

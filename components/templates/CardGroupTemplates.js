@@ -1,6 +1,6 @@
-import { Box, Flex, Heading, Stack as StackRaw } from "@chakra-ui/react";
-import { MixUpCard, GenericCard } from "../index";
-import { groupColors, randomGroupColor } from "../../utils";
+import { Flex, Heading, Stack as StackRaw } from "@chakra-ui/react";
+import { GenericCard } from "../index";
+import { groupColors } from "../../utils";
 
 const Stack = ({ children, ...rest }) => {
   return (
@@ -10,7 +10,7 @@ const Stack = ({ children, ...rest }) => {
   );
 };
 
-export const CardNestingTemplate = ({ metaName, data, character }) => {
+export const CardNestingTemplate = ({ metaNestName, data, character }) => {
   if (!data) return null;
   //checks if the data is an object to determine whether its a group(object) or cards(array)
 
@@ -23,7 +23,7 @@ export const CardNestingTemplate = ({ metaName, data, character }) => {
   }
 
   //Template for both CreateGroups and CreateCards components
-  const NestTemplate = ({ heading, children }) => {
+  const NestTemplate = ({ heading, children, ...rest }) => {
     return (
       <Flex
         w={"100%"}
@@ -33,6 +33,7 @@ export const CardNestingTemplate = ({ metaName, data, character }) => {
         alignItems={"center"}
         position={"relative"}
         direction={"column"}
+        {...rest}
       >
         <Heading
           size={"sm"}
@@ -54,14 +55,17 @@ export const CardNestingTemplate = ({ metaName, data, character }) => {
     return (
       <>
         {Object.keys(data).map((v, i) => {
-          const { id } = data[v];
           return (
-            <NestTemplate heading={v} key={`nestTemplate${i}`}>
+            <NestTemplate heading={v} key={`CreateGroups/${v}/${i}`}>
               <Stack>
                 {isArray(data[v]) ? (
-                  <CreateCards data={data[v]} />
+                  <CreateCards data={data[v]} href={href} />
                 ) : isObject(data[v]) ? (
-                  <CreateGroups heading={v} data={data[v]} />
+                  <CreateGroups
+                    heading={v}
+                    data={data[v]}
+                    href={`${href}/${v}`}
+                  />
                 ) : null}
               </Stack>
             </NestTemplate>
@@ -75,10 +79,11 @@ export const CardNestingTemplate = ({ metaName, data, character }) => {
   const CreateCards = ({ data, href }) => {
     return (
       <Stack>
-        {data.map((v) => {
+        {data.map((v, i) => {
           const { id } = v;
           return (
             <GenericCard
+              key={`CreateCards/${v}/${i}`}
               data={v}
               character={character}
               fontSize={12}
@@ -91,13 +96,13 @@ export const CardNestingTemplate = ({ metaName, data, character }) => {
     );
   };
 
-  const defaultHref = `/${character}/${metaName}`;
+  const defaultHref = `/${character}/${metaNestName}`;
 
   return (
-    <NestTemplate heading={metaName}>
+    <NestTemplate heading={metaNestName}>
       <Stack w={"100%"}>
         {isObject(data) ? (
-          <CreateGroups heading={metaName} data={data} href={defaultHref} />
+          <CreateGroups heading={metaNestName} data={data} href={defaultHref} />
         ) : isArray(data) ? (
           <CreateCards data={data} href={defaultHref} />
         ) : null}

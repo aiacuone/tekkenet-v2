@@ -1,2 +1,3 @@
 export * from "./CardGroupTemplates";
-export * from "./Card";
+export * from "./GenericCard";
+export * from "../providers/DetailPageProvider";
