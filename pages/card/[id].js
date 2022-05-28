@@ -1,26 +1,20 @@
 import { useRouter } from "next/router";
 import { mixUps } from "../../mixUps";
-import { isArray, isObject, flattenDeep } from "lodash";
+import { find } from "lodash";
+import { getAllArraysInObject } from "../../utils";
+import { Text } from "@chakra-ui/react";
 
 export default function CardPage() {
-  const { id } = useRouter().query; //to use later
-  const getAllCards = () => {
-    let cardArrays = [];
-    Object.keys(mixUps).forEach((v) => {
-      function pushOrMap(v) {
-        if (isObject(v)) mapObject(v);
-        if (isArray(v)) cardArrays.push(v);
-      }
-
-      function mapObject(obj) {
-        Object.keys(obj).forEach((v) => {
-          pushOrMap(obj[v]);
-        });
-      }
-      pushOrMap(mixUps[v]);
-    });
-    return flattenDeep(cardArrays);
-  };
-  const allCards = getAllCards(); //to use later
-  return <div></div>;
+  const { id } = useRouter().query; //TODO use to get the card details
+  const allCards = getAllArraysInObject(mixUps);
+  const card = find(allCards, (v) => {
+    return v.id === parseInt(id);
+  });
+  return (
+    <div>
+      {Object.keys(card).map((v) => (
+        <Text>{`${v} : ${card[v]}`}</Text>
+      ))}
+    </div>
+  );
 }
