@@ -1,12 +1,6 @@
 import { Box, Flex, Text } from "@chakra-ui/react";
-import { useRouter } from "next/router";
-import { mixUps } from "../../mixUps";
 
-export function DetailsPageTemplate({ category, character, id, details }) {
-  const router = useRouter();
-
-  console.log({ category, character, id, router });
-
+export function CardPageTemplate({ category, character, id, details }) {
   return (
     <Box>
       <Text>{category}</Text>

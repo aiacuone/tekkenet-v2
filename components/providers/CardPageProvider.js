@@ -1,9 +1,9 @@
 import React from "react";
 import { useRouter } from "next/router";
 import { mixUps } from "../../mixUps";
-import { DetailsPageTemplate } from "../pages/DetailsPageTemplate";
+import { CardPageTemplate } from "../pages/CardPageTemplate";
 
-export function DetailPageProvider() {
+export function CardPageProvider() {
   const router = useRouter();
   const { category, character, id } = router.query;
   console.log(router.query, "router.query");
@@ -18,7 +18,7 @@ export function DetailPageProvider() {
     details,
   };
 
-  return <DetailsPageTemplate {...values} />;
+  return <CardPageTemplate {...values} />;
 }
 
-export default DetailPageProvider;
+export default CardPageProvider;

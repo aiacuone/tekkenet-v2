@@ -1,9 +1,9 @@
-import { CharacterTemplate } from "../../components";
+import { NestGroupTemplate } from "../../components";
 import { useRouter } from "next/router";
 import { characters } from "../../characters";
 import { mixUps } from "../../mixUps";
 
-const CharacterProvider = () => {
+const CharacterPage = () => {
   const route = useRouter();
   const { character } = route.query;
   const moves = characters[character];
@@ -15,7 +15,7 @@ const CharacterProvider = () => {
     data,
   };
 
-  return <CharacterTemplate {...props} />;
+  return <NestGroupTemplate {...props} />;
 };
 
-export default CharacterProvider;
+export default CharacterPage;

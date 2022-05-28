@@ -1,1 +1,1 @@
-export * from "./DetailPageProvider";
+export * from "./CardPageProvider";

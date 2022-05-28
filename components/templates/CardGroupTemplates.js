@@ -1,6 +1,7 @@
 import { Flex, Heading, Stack as StackRaw } from "@chakra-ui/react";
 import { GenericCard } from "../index";
 import { groupColors } from "../../utils";
+import { isArray, isObject } from "lodash";
 
 const Stack = ({ children, ...rest }) => {
   return (
@@ -13,14 +14,6 @@ const Stack = ({ children, ...rest }) => {
 export const CardNestingTemplate = ({ metaNestName, data, character }) => {
   if (!data) return null;
   //checks if the data is an object to determine whether its a group(object) or cards(array)
-
-  const isObject = (data) => {
-    return Object.prototype.toString.call(data) === "[object Object]";
-  };
-
-  function isArray(data) {
-    return Array.isArray(data);
-  }
 
   //Template for both CreateGroups and CreateCards components
   const NestTemplate = ({ heading, children, ...rest }) => {
@@ -97,7 +90,6 @@ export const CardNestingTemplate = ({ metaNestName, data, character }) => {
   };
 
   const defaultHref = `/${character}/${metaNestName}`;
-
   return (
     <NestTemplate heading={metaNestName}>
       <Stack w={"100%"}>

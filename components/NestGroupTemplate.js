@@ -4,7 +4,7 @@ import { GrAdd } from "react-icons/gr";
 import Link from "next/link";
 import { CardNestingTemplate } from "./templates";
 
-export function CharacterTemplate({ character, data }) {
+export function NestGroupTemplate({ character, data }) {
   if (!data) return null;
   const navIconSize = 20;
 
@@ -35,7 +35,7 @@ export function CharacterTemplate({ character, data }) {
     return (
       <CardNestingTemplate
         data={data[group]}
-        metaName={group}
+        metaNestName={group}
         character={character}
         key={`cardNestGroups/${group}/${i}`}
       />
