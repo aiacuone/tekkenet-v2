@@ -1,27 +1,35 @@
-import { NestGroupTemplate } from "../../components";
 import { useRouter } from "next/router";
 import { characters } from "../../characters";
 import { mixUps as allMixUps } from "../../mixUps";
 import { getCharacterMoves } from "../../utils";
+import { CharacterPageProvider } from "../../components";
 
-const CharacterPage = () => {
+export default function CharacterPage() {
   const route = useRouter();
   const { character } = route.query;
   const {
     frames: { range: getFramesRange },
   } = getCharacterMoves;
-  const moves = characters[character];
+  const allCharactersMoves = characters[character];
+  if (!allCharactersMoves) return null;
+
   const mixUps = allMixUps[character];
-  const pokes = getFramesRange({ min: 9, max: 10, moveList: moves });
+  const pokes = getFramesRange({
+    min: 9,
+    max: 13,
+    moveList: allCharactersMoves,
+  });
 
   //All the nested groups rendered
-  const data = { "Mix Ups": mixUps, Pokes: pokes };
+  const data = [
+    { name: "mixUps", data: mixUps },
+    { name: "pokes", data: pokes },
+  ];
+
   const props = {
     character,
-    moves,
+    allCharactersMoves,
     data,
   };
-  return <NestGroupTemplate {...props} />;
-};
-
-export default CharacterPage;
+  return <CharacterPageProvider {...props} />;
+}

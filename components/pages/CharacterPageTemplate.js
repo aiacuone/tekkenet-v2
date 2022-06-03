@@ -1,11 +1,10 @@
 import { Button, Flex, Heading, Stack } from "@chakra-ui/react";
+import { CardNesting } from "../CardNesting";
+import Link from "next/link";
 import { AiOutlineRollback } from "react-icons/ai";
 import { GrAdd } from "react-icons/gr";
-import Link from "next/link";
-import { CardNestingTemplate } from "./templates";
 
-export function NestGroupTemplate({ character, data }) {
-  if (!data) return null;
+export function CharacterPageTemplate({ character, data }) {
   const navIconSize = 20;
 
   const heading = (
@@ -30,24 +29,12 @@ export function NestGroupTemplate({ character, data }) {
       </Flex>
     </Flex>
   );
-
-  const cardNestGroups = Object.keys(data).map((group, i) => {
-    return (
-      <CardNestingTemplate
-        data={data[group]}
-        metaNestName={group}
-        character={character}
-        key={`cardNestGroups/${group}/${i}`}
-      />
-    );
-  });
-
   return (
-    <Flex w={"100%"} h={"100%"} direction={"column"} p={10}>
+    <Flex w={"100%"} h={"100vh"} p={10} direction={"column"}>
       <Stack spacing={10}>
         {heading}
         {controls}
-        {cardNestGroups}
+        <CardNesting data={data} />
       </Stack>
     </Flex>
   );

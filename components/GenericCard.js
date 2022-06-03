@@ -3,14 +3,12 @@ import Link from "next/link";
 
 export const GenericCard = ({
   data,
-  character,
   category,
   cardWidth,
   href,
   bg = "white",
   ...rest
 }) => {
-  console.log({ data });
   return (
     <Link href={`/card/${data.id}`} {...rest}>
       <Flex

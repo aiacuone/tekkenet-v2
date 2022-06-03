@@ -1,1 +1,2 @@
-export * from "./CardDetailPage";
+export * from "./CardPageTemplate";
+export * from "./CharacterPageTemplate";

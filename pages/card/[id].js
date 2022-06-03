@@ -5,7 +5,7 @@ import { getAllArraysInObject } from "../../utils";
 import { Text } from "@chakra-ui/react";
 
 export default function CardPage() {
-  const { id } = useRouter().query; //TODO use to get the card details
+  const { id } = useRouter().query;
   const allCards = getAllArraysInObject(mixUps);
   const card = find(allCards, (v) => {
     return v.id === parseInt(id);

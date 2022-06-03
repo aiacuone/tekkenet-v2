@@ -6,7 +6,6 @@ import { CardPageTemplate } from "../pages/CardPageTemplate";
 export function CardPageProvider() {
   const router = useRouter();
   const { category, character, id } = router.query;
-  console.log(router.query, "router.query");
   const details = mixUps[character]?.[category]?.filter(
     (c) => c.id?.toString() === id
   )[0];

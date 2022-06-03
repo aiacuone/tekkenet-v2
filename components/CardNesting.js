@@ -1,22 +1,10 @@
-import { Flex, Heading, Stack as StackRaw } from "@chakra-ui/react";
-import { GenericCard } from "../index";
-import { groupColors } from "../../utils";
+import { Flex, Heading, Stack } from "@chakra-ui/react";
+import { groupColors } from "../utils";
 import { isArray, isObject } from "lodash";
+import { GenericCard } from "./GenericCard";
 
-const Stack = ({ children, ...rest }) => {
-  return (
-    <StackRaw mt={5} spacing={10} {...rest}>
-      {children}
-    </StackRaw>
-  );
-};
-
-export const CardNestingTemplate = ({ metaNestName, data, character }) => {
-  if (!data) return null;
-  //checks if the data is an object to determine whether its a group(object) or cards(array)
-
-  //Template for both CreateGroups and CreateCards components
-  const NestTemplate = ({ heading, children, ...rest }) => {
+export const CardNesting = ({ data, character }) => {
+  const NestContainer = ({ heading, children, ...rest }) => {
     return (
       <Flex
         w={"100%"}
@@ -26,6 +14,7 @@ export const CardNestingTemplate = ({ metaNestName, data, character }) => {
         alignItems={"center"}
         position={"relative"}
         direction={"column"}
+        flex={1}
         {...rest}
       >
         <Heading
@@ -43,14 +32,13 @@ export const CardNestingTemplate = ({ metaNestName, data, character }) => {
     );
   };
 
-  //Component that renders if data is an object (nested)
   const CreateGroups = ({ data, heading, href }) => {
     return (
-      <>
+      <Stack spacing={5} w={"100%"}>
         {Object.keys(data).map((v, i) => {
           return (
-            <NestTemplate heading={v} key={`CreateGroups/${v}/${i}`}>
-              <Stack>
+            <NestContainer heading={v} key={`CreateGroups/${v}/${i}`}>
+              <Stack spacing={5}>
                 {isArray(data[v]) ? (
                   <CreateCards data={data[v]} href={href} />
                 ) : isObject(data[v]) ? (
@@ -61,17 +49,17 @@ export const CardNestingTemplate = ({ metaNestName, data, character }) => {
                   />
                 ) : null}
               </Stack>
-            </NestTemplate>
+            </NestContainer>
           );
         })}
-      </>
+      </Stack>
     );
   };
 
   //Renders if data is an array
   const CreateCards = ({ data, href }) => {
     return (
-      <Stack>
+      <Stack spacing={5}>
         {data.map((v, i) => {
           const { id } = v;
           return (
@@ -89,16 +77,21 @@ export const CardNestingTemplate = ({ metaNestName, data, character }) => {
     );
   };
 
-  const defaultHref = `/${character}/${metaNestName}`;
   return (
-    <NestTemplate heading={metaNestName}>
-      <Stack w={"100%"}>
-        {isObject(data) ? (
-          <CreateGroups heading={metaNestName} data={data} href={defaultHref} />
-        ) : isArray(data) ? (
-          <CreateCards data={data} href={defaultHref} />
-        ) : null}
+    <Flex w={"100%"} h={"100%"} direction={"column"}>
+      <Stack flex={1} spacing={5}>
+        {data.map((v) => {
+          return (
+            <NestContainer heading={v.name}>
+              {isArray(v.data) ? (
+                <CreateCards data={v.data} />
+              ) : isObject(v.data) ? (
+                <CreateGroups data={v.data} heading={v.name} />
+              ) : null}
+            </NestContainer>
+          );
+        })}
       </Stack>
-    </NestTemplate>
+    </Flex>
   );
 };
