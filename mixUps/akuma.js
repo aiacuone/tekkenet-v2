@@ -1,7 +1,6 @@
 export const akuma = {
   neutral: [
     {
-      id: 1,
       options: ["b1", "df2"],
       summary:
         "B1 to counter anything over i13, DF2 to counter any fast/high crushing moves",
@@ -10,7 +9,6 @@ export const akuma = {
       favourite: false,
     },
     {
-      id: 2,
       options: ["b1", "df2"],
       summary:
         "B1 to counter anything over i13, DF2 to counter any fast/high crushing moves",
@@ -19,7 +17,6 @@ export const akuma = {
       favourite: true,
     },
     {
-      id: 3,
       options: ["b1", "df2"],
       summary:
         "B1 to counter anything over i13, DF2 to counter any fast/high crushing moves",
@@ -30,7 +27,6 @@ export const akuma = {
   ],
   wakeUp: [
     {
-      id: 4,
       options: ["b1", "df2"],
       summary:
         "B1 to counter anything over i13, DF2 to counter any fast/high crushing moves",
@@ -41,7 +37,6 @@ export const akuma = {
   ],
   throws: [
     {
-      id: 5,
       options: ["b1", "df2"],
       summary:
         "B1 to counter anything over i13, DF2 to counter any fast/high crushing moves",
@@ -52,7 +47,6 @@ export const akuma = {
   ],
   unblockables: [
     {
-      id: 6,
       options: ["b1", "df2"],
       summary:
         "B1 to counter anything over i13, DF2 to counter any fast/high crushing moves",
