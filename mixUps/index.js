@@ -50,7 +50,7 @@ import { xiaoyu } from "./xiaoyu";
 import { yoshimitsu } from "./yoshimitsu";
 import { zafina } from "./zafina";
 
-export const mixUps = {
+export const mixUpsWithoutUUID = {
   akuma,
   alisa,
   anna,
@@ -101,17 +101,25 @@ export const mixUps = {
   // zafina,
 };
 
-const mixUpsWithUUID = Object.keys(mixUps).reduce((init, character) => {
-  const addUUID = (arr) => arr.map((v) => ({ ...v, uuid: uuidv4() }));
-  const mapThroughObject = (obj) =>
-    Object.keys(obj).reduce(
-      (init, current) => ({
-        ...init,
-        [current]: isArray(obj[current])
-          ? addUUID(obj[current])
-          : mapThroughObject(obj[current]),
-      }),
-      {}
-    );
-  return { ...init, [character]: mapThroughObject(mixUps[character]) };
-}, {});
+const mixUpsWithUUID = Object.keys(mixUpsWithoutUUID).reduce(
+  (init, character) => {
+    const addUUID = (arr) => arr.map((v) => ({ ...v, uuid: uuidv4() }));
+    const mapThroughObject = (obj) =>
+      Object.keys(obj).reduce(
+        (init, current) => ({
+          ...init,
+          [current]: isArray(obj[current])
+            ? addUUID(obj[current])
+            : mapThroughObject(obj[current]),
+        }),
+        {}
+      );
+    return {
+      ...init,
+      [character]: mapThroughObject(mixUpsWithoutUUID[character]),
+    };
+  },
+  {}
+);
+
+export const mixUps = { ...mixUpsWithUUID };
