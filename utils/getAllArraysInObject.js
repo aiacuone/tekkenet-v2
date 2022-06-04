@@ -1,12 +1,11 @@
-import { mixUps } from "../mixUps";
 import { flattenDeep, isArray, isObject } from "lodash";
 
 export function getAllArraysInObject(data) {
   let cardArrays = [];
   Object.keys(data).forEach((v) => {
     function pushOrMap(v) {
-      if (isObject(v)) mapObject(v);
-      if (isArray(v)) cardArrays.push(v);
+      if (isArray(v)) return cardArrays.push(v);
+      if (isObject(v)) return mapObject(v);
     }
 
     function mapObject(obj) {
@@ -14,7 +13,7 @@ export function getAllArraysInObject(data) {
         pushOrMap(obj[v]);
       });
     }
-    pushOrMap(mixUps[v]);
+    pushOrMap(data[v]);
   });
   return flattenDeep(cardArrays);
 }

@@ -7,17 +7,17 @@ export function CardPageProvider() {
   const router = useRouter();
   const { category, character, id } = router.query;
   const details = mixUps[character]?.[category]?.filter(
-    (c) => c.id?.toString() === id
+    (c) => c.uuiid?.toString() === id
   )[0];
 
-  const values = {
+  const props = {
     category,
     character,
     id,
     details,
   };
 
-  return <CardPageTemplate {...values} />;
+  return <CardPageTemplate {...props} />;
 }
 
 export default CardPageProvider;

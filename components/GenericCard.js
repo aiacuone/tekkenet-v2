@@ -10,7 +10,7 @@ export const GenericCard = ({
   ...rest
 }) => {
   return (
-    <Link href={`/card/${data.id}`} {...rest}>
+    <Link href={`/card/${data["uuid"]}`} {...rest}>
       <Flex
         cursor={"pointer"}
         direction={"column"}
