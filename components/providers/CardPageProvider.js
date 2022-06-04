@@ -1,7 +1,7 @@
 import React from "react";
 import { useRouter } from "next/router";
 import { mixUps } from "../../mixUps";
-import { CardPageTemplate } from "../pages/CardPageTemplate";
+import { CardPageTemplate } from "../pages";
 
 export function CardPageProvider() {
   const router = useRouter();

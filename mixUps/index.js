@@ -1,3 +1,6 @@
+import { isArray, isObject } from "lodash";
+import { v4 as uuidv4 } from "uuid";
+
 import { akuma } from "./akuma";
 import { anna } from "./anna";
 import { alisa } from "./alisa";
@@ -97,3 +100,18 @@ export const mixUps = {
   // yoshimitsu,
   // zafina,
 };
+
+const mixUpsWithUUID = Object.keys(mixUps).reduce((init, character) => {
+  const addUUID = (arr) => arr.map((v) => ({ ...v, uuid: uuidv4() }));
+  const mapThroughObject = (obj) =>
+    Object.keys(obj).reduce(
+      (init, current) => ({
+        ...init,
+        [current]: isArray(obj[current])
+          ? addUUID(obj[current])
+          : mapThroughObject(obj[current]),
+      }),
+      {}
+    );
+  return { ...init, [character]: mapThroughObject(mixUps[character]) };
+}, {});

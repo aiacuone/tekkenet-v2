@@ -1,3 +1,5 @@
+import { v4 as uuidv4 } from "uuid";
+
 import { akuma } from "./akuma";
 import { anna } from "./anna";
 import { alisa } from "./alisa";
@@ -47,7 +49,7 @@ import { xiaoyu } from "./xiaoyu";
 import { yoshimitsu } from "./yoshimitsu";
 import { zafina } from "./zafina";
 
-export const characters = {
+const charactersWithoutUUID = {
   akuma,
   alisa,
   anna,
@@ -97,3 +99,16 @@ export const characters = {
   yoshimitsu,
   zafina,
 };
+
+const charactersWithUUID = Object.keys(charactersWithoutUUID).reduce(
+  (init, character) => {
+    const movesWithUUID = charactersWithoutUUID[character].reduce(
+      (init, current) => [...init, { ...current, uuid: uuidv4() }],
+      []
+    );
+    return { ...init, [character]: movesWithUUID };
+  },
+  {}
+);
+
+export const characters = { ...charactersWithUUID };
