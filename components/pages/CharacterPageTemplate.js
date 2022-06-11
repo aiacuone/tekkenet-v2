@@ -1,10 +1,10 @@
 import { Button, Flex, Heading, Stack } from "@chakra-ui/react";
-import { CardNesting } from "../CardNesting";
 import Link from "next/link";
 import { AiOutlineRollback } from "react-icons/ai";
 import { GrAdd } from "react-icons/gr";
+import {MoveCard} from "../MoveCard";
 
-export function CharacterPageTemplate({ character, data }) {
+export function CharacterPageTemplate({ character, allCharacterMoves, data }) {
   const navIconSize = 20;
 
   const heading = (
@@ -29,12 +29,15 @@ export function CharacterPageTemplate({ character, data }) {
       </Flex>
     </Flex>
   );
+
   return (
     <Flex w={"100%"} h={"100vh"} p={10} direction={"column"}>
       <Stack spacing={10}>
         {heading}
         {controls}
-        <CardNesting data={data} />
+          {allCharacterMoves.map(move=>{
+              return <MoveCard move={move}/>
+          })}
       </Stack>
     </Flex>
   );

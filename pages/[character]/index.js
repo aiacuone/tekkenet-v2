@@ -10,14 +10,14 @@ export default function CharacterPage() {
   const {
     frames: { range: getFramesRange },
   } = getCharacterMoves;
-  const allCharactersMoves = characters[character];
-  if (!allCharactersMoves) return null;
+  const allCharacterMoves = characters[character];
+  if (!allCharacterMoves) return null;
 
   const mixUps = allMixUps[character];
   const pokes = getFramesRange({
     min: 9,
     max: 13,
-    moveList: allCharactersMoves,
+    moveList: allCharacterMoves,
   });
 
   //All the nested groups rendered
@@ -25,10 +25,9 @@ export default function CharacterPage() {
     { name: "mixUps", data: mixUps },
     { name: "pokes", data: pokes },
   ];
-
   const props = {
     character,
-    allCharactersMoves,
+    allCharacterMoves,
     data,
   };
   return <CharacterPageProvider {...props} />;
